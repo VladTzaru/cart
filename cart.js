@@ -87,7 +87,6 @@
 
   function clearCart() {    // Clear cart
     cart.length = 0;
-    return cart;
   }
 
 
