@@ -14,7 +14,7 @@
   }
 
 
-  function addItemToCart(name, price, count) {   // Add an item to the cart
+  function addItemToCart(name, price, count) {    // Add an item to the cart
 
     // Check value type
     if (typeof name !== 'string') {
@@ -67,7 +67,7 @@
   }
 
 
-  function removeItemFromCartAll(name) {   // Clear 1 item and its count at once
+  function removeItemFromCartAll(name) {    // Clear 1 item and its count at once
 
     // Check params type
     if (typeof name !== 'string') {
@@ -85,13 +85,13 @@
   }
 
 
-  function clearCart() {   // Clear cart
+  function clearCart() {    // Clear cart
     cart.length = 0;
     return cart;
   }
 
 
-  function totalPrice() {  // Total sum
+  function totalPrice() {   // Total sum
     let total = 0;
     for (let item of cart) {
       total += item.price;
@@ -100,7 +100,7 @@
   }
 
 
-  function totalItemCount() {  // All items in the cart
+  function totalItemCount() {   // All items in the cart
     let itemCount = 0;
     for (let i = 0; i < cart.length; i++) {
       itemCount += cart[i].count;
@@ -109,20 +109,26 @@
   }
 
 
+  function listCart() {   // List cart
+    // Copy cart object
+    return JSON.parse(JSON.stringify(cart));
+  }
+
+
+
 
   addItemToCart('apple', 3, 10);
   addItemToCart('snop', 10, 2);
   addItemToCart('bang', 12, 4);
 
-  const total = totalItemCount();
-  console.log(total);
-  console.log(cart);
+  const list = listCart();
+  list[0].name = 'vladi';
+
+console.log(cart);
+console.log(list);
 
   // Save cart - localstorage
   // load localstorage
-  // Display cart
-  // Total amount - Price
-  // Total count
   // Checkout
   // Review
   // Buy
