@@ -100,10 +100,10 @@
   }
 
 
-  function totalCount() {  // All items in the cart
+  function totalItemCount() {  // All items in the cart
     let itemCount = 0;
     for (let i = 0; i < cart.length; i++) {
-      itemCount += i;
+      itemCount += cart[i].count;
     }
     return itemCount;
   }
@@ -111,11 +111,12 @@
 
 
   addItemToCart('apple', 3, 10);
-  addItemToCart('snop', 10, 4);
+  addItemToCart('snop', 10, 2);
   addItemToCart('bang', 12, 4);
 
-  const total = totalCount();
+  const total = totalItemCount();
   console.log(total);
+  console.log(cart);
 
   // Save cart - localstorage
   // load localstorage
