@@ -91,8 +91,31 @@
   }
 
 
+  function totalPrice() {  // Total sum
+    let total = 0;
+    for (let item of cart) {
+      total += item.price;
+    }
+    return total;
+  }
 
 
+  function totalCount() {  // All items in the cart
+    let itemCount = 0;
+    for (let i = 0; i < cart.length; i++) {
+      itemCount += i;
+    }
+    return itemCount;
+  }
+
+
+
+  addItemToCart('apple', 3, 10);
+  addItemToCart('snop', 10, 4);
+  addItemToCart('bang', 12, 4);
+
+  const total = totalCount();
+  console.log(total);
 
   // Save cart - localstorage
   // load localstorage
