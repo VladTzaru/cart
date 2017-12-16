@@ -104,26 +104,6 @@
     cart = JSON.parse(localStorage.getItem("shoppingCart"));
   }
 
-  loadCart();
-  const array = listCart();
-
-  console.log(array);
-
-
-
-
-
-  // Save cart - localstorage
-  // load localstorage
-  // Checkout
-  // Review
-  // Buy
-
-
-
-
-
-
 
 
 })();
