@@ -6,7 +6,7 @@
         e.preventDefault();
         const itemName = $(this).attr("data-name");
         const itemPrice = Number($(this).attr("data-price"));
-        addItemToCart(itemName, itemPrice, 1);
+        addItemToCart(itemName, itemPrice);
         displayCart();
     });
 
@@ -17,7 +17,24 @@
     });
 
 
-    $("#display-cart").on("click", ".btn-remove-item", function(e) {
+    // Delete Item
+    $("#display-cart").on("click", ".delete-item", function(e) {
+        const itemName = $(this).attr("data-name");
+        removeItemFromCartAll(itemName);
+        displayCart();
+    });
+
+
+    // Add Item
+    $("#display-cart").on("click", ".add-item", function(e) {
+        const itemName = $(this).attr("data-name");
+        addItemToCart(itemName);
+        displayCart();
+    });
+
+
+    // Subtract Item
+    $("#display-cart").on("click", ".subtract-item", function(e) {
         const itemName = $(this).attr("data-name");
         removeItemFromCart(itemName);
         displayCart();
@@ -30,7 +47,9 @@
         for (let item of cartArray) {
             output += `<li>
             ${item.name} | $${item.price} * ${item.count} = ${item.total}
-            <button type="button" class="btn-remove-item" data-name="${item.name}">X</button>
+            <button type="button" class="subtract-item" data-name="${item.name}">-</button>
+            <button type="button" class="add-item" data-name="${item.name}">+</button>
+            <button type="button" class="delete-item" data-name="${item.name}">x</button>
             </li>`;
         }
         $("#display-cart").html(output);
@@ -51,7 +70,7 @@
     }
 
 
-    function addItemToCart(name, price, count) { // Add an item to the cart
+    function addItemToCart(name, price = 0, count = 1) { // Add an item to the cart
 
         name = name.toLowerCase();
 
