@@ -132,6 +132,7 @@
 
   // Invoke Methods
   loadCart();
+  displayCart();
 
 
 })();
