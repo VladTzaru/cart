@@ -29,7 +29,7 @@ const TZARU_shoppingCart = {};
             }
         }
 
-        const item = new TZARU_shoppingCart.Item(name, price, count);
+        const item = new this.Item(name, price, count);
         this.cart.push(item);
         this.saveCart();
     };
