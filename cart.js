@@ -5,20 +5,23 @@
 
 
   // ********************* VIEW ********************* //
-  $(".add-to-cart").click((e) => {
+  $(".add-to-cart").click(function(e) {
     e.preventDefault();
     const itemName = $(this).attr("data-name");
-    const itemPrice = $(this).attr("data-price");
+    const itemPrice = Number($(this).attr("data-price"));
     addItemToCart(itemName, itemPrice, 1);
+    displayCart();
   });
 
 
   function displayCart() {
     const cartArray = listCart();
-    console.log(cartArray);
+    let output = "";
+    for (let item of cart) {
+      output += `<li>${item.name} | $${item.price} | ${item.count}</li>`;
+    }
+    $("#display-cart").html(output);
   }
-
-  displayCart();
 
 
   // ********************* SHOPPING CART ********************* //
@@ -109,7 +112,7 @@
 
 
   function listCart() {   // Copy the cart to avoid object mutation
-    return cart = JSON.parse(JSON.stringify(cart));
+    cart = JSON.parse(JSON.stringify(cart));
   }
 
 
@@ -122,8 +125,8 @@
     cart = JSON.parse(localStorage.getItem("shoppingCart"));
   }
 
-
-  // INVOKE METHODS
+  // Invoke Methods
   loadCart();
+
 
 })();
