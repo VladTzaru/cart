@@ -20,8 +20,8 @@
   function displayCart() {
     const cartArray = listCart();
     let output = "";
-    for (let item of cart) {
-      output += `<li>${item.name} | $${item.price} | ${item.count}</li>`;
+    for (let item of cartArray) {
+      output += `<li>${item.name} | $${item.price} * ${item.count} = ${item.total}</li>`;
     }
     $("#display-cart").html(output);
     $("#total-price").html( totalPrice() );
@@ -120,6 +120,10 @@
 
   function listCart() {   // Copy the cart to avoid object mutation
     const cartCopy = JSON.parse(JSON.stringify(cart));
+    // Total cost per item
+    for (let item of cartCopy) {
+      item.total = (item.price * item.count).toFixed(2);
+    }
     return cartCopy;
   }
 
