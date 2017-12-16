@@ -1,9 +1,6 @@
 (function() {
   'use strict';
 
-  let cart = [];
-
-
   // ********************* VIEW ********************* //
   $(".add-to-cart").click(function(e) {
     e.preventDefault();
@@ -25,6 +22,9 @@
 
 
   // ********************* SHOPPING CART ********************* //
+  let cart = [];
+
+
   class Item {
     constructor(name, price, count) {
       this.name = name;
@@ -112,7 +112,8 @@
 
 
   function listCart() {   // Copy the cart to avoid object mutation
-    cart = JSON.parse(JSON.stringify(cart));
+    const cartCopy = JSON.parse(JSON.stringify(cart));
+    return cartCopy;
   }
 
 
@@ -123,7 +124,11 @@
 
   function loadCart() {
     cart = JSON.parse(localStorage.getItem("shoppingCart"));
+    if (cart === null) {
+      cart = [];
+    }
   }
+
 
   // Invoke Methods
   loadCart();
