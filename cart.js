@@ -18,6 +18,7 @@
       output += `<li>${item.name} | $${item.price} | ${item.count}</li>`;
     }
     $("#display-cart").html(output);
+    $("#total-price").html( totalPrice() );
   }
 
 
@@ -96,7 +97,7 @@
   function totalPrice() {   // Total sum
     let total = 0;
     for (let item of cart) {
-      total += item.price;
+      total += item.price * item.count;
     }
     return total;
   }
