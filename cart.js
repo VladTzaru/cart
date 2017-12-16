@@ -1,10 +1,27 @@
 (function() {
   'use strict';
 
-
   let cart = [];
 
 
+  // ********************* VIEW ********************* //
+  $(".add-to-cart").click((e) => {
+    e.preventDefault();
+    const itemName = $(this).attr("data-name");
+    const itemPrice = $(this).attr("data-price");
+    addItemToCart(itemName, itemPrice, 1);
+  });
+
+
+  function displayCart() {
+    const cartArray = listCart();
+    console.log(cartArray);
+  }
+
+  displayCart();
+
+
+  // ********************* SHOPPING CART ********************* //
   class Item {
     constructor(name, price, count) {
       this.name = name;
@@ -91,8 +108,9 @@
   }
 
 
-  // Copy the cart to avoid object mutation
-  const listCart = _ => cart = JSON.parse(JSON.stringify(cart));
+  function listCart() {   // Copy the cart to avoid object mutation
+    return cart = JSON.parse(JSON.stringify(cart));
+  }
 
 
   function saveCart() {
@@ -105,5 +123,7 @@
   }
 
 
+  // INVOKE METHODS
+  loadCart();
 
 })();
