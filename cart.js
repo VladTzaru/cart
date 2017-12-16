@@ -1,5 +1,8 @@
+
 (function() {
     'use strict';
+
+    // displayCart : Function
 
     // ********************* VIEW ********************* //
     $(".add-to-cart").click(function(e) {
@@ -58,22 +61,21 @@
 
 
     // ********************* SHOPPING CART ********************* //
-    let cart = [];
+    const TZARU_shoppingCart = {};
 
+    // cart : Array
+    TZARU_shoppingCart.cart = [];
 
-    class Item {
-        constructor(name, price, count) {
-            this.name = name;
-            this.price = price;
-            this.count = count;
-        }
-    }
+    // Item : Class
+    TZARU_shoppingCart.Item = function(name, price, count) {
+      this.name = name;
+      this.price = price;
+      this.count = count;
+    };
 
-
-    function addItemToCart(name, price = 0, count = 1) { // Add an item to the cart
-
+    // addItemToCart : Function
+    TZARU_shoppingCart.addItemToCart = function(name, price = 0, count = 1) {
         name = name.toLowerCase();
-
         /*
         Iterate over cart array. If there's an item with same name,
         increment the count.
@@ -89,11 +91,10 @@
         const item = new Item(name, price, count);
         cart.push(item);
         saveCart();
-    }
+    };
 
-
-    function removeItemFromCart(name) { // Remove 1 item from cart
-
+    // removeItemFromCart : Function
+    TZARU_shoppingCart.removeItemFromCart = function(name) {
         name = name.toLowerCase();
 
         for (let i = 0; i < cart.length; i++) {
@@ -106,11 +107,10 @@
             }
         }
         saveCart();
-    }
+    };
 
-
-    function removeItemFromCartAll(name) { // Clear 1 item and its count at once
-
+    // removeItemFromCartAll : Function
+    TZARU_shoppingCart.removeItemFromCartAll = function(name) {
         name = name.toLowerCase();
 
         for (let i = 0; i < cart.length; i++) {
@@ -120,58 +120,59 @@
             }
         }
         saveCart();
-    }
+    };
 
-
-    function clearCart() { // Clear cart
+    // clearCart : Function
+    TZARU_shoppingCart.clearCart = function() {
         cart.length = 0;
         saveCart();
-    }
+    };
 
-
-    function totalPrice() { // Total sum
+    // totalPrice : Function
+    TZARU_shoppingCart.totalPrice = function() {
         let total = 0;
         for (let item of cart) {
             total += item.price * item.count;
         }
         return total.toFixed(2);
-    }
+    };
 
-
-    function totalItemCount() { // All items in the cart
+    // totalItemCount: Function
+    TZARU_shoppingCart.totalItemCount = function() {
         let itemCount = 0;
         for (let i = 0; i < cart.length; i++) {
             itemCount += cart[i].count;
         }
         return itemCount;
-    }
+    };
 
-
-    function listCart() { // Copy the cart to avoid object mutation
+    // listCart : Function
+    TZARU_shoppingCart.listCart = function() { // Copy the cart to avoid object mutation
         const cartCopy = JSON.parse(JSON.stringify(cart));
         // Total cost per item
         for (let item of cartCopy) {
             item.total = (item.price * item.count).toFixed(2);
         }
         return cartCopy;
-    }
+    };
 
-
-    function saveCart() {
+    // saveCart : Function
+    TZARU_shoppingCart.saveCart = function() {
         localStorage.setItem("shoppingCart", JSON.stringify(cart));
-    }
+    };
 
-
-    function loadCart() {
+    // loadCart : Function
+    TZARU_shoppingCart.loadCart = function() {
         cart = JSON.parse(localStorage.getItem("shoppingCart"));
         if (cart === null) {
             cart = [];
         }
-    }
+    };
+
 
 
     // Invoke Methods
-    loadCart();
+    TZARU_shoppingCart.loadCart();
     displayCart();
 
 
