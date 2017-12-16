@@ -11,6 +11,12 @@
   });
 
 
+  $("#clear-cart").click(function(e) {
+    clearCart();
+    displayCart();
+  });
+
+
   function displayCart() {
     const cartArray = listCart();
     let output = "";
@@ -99,7 +105,7 @@
     for (let item of cart) {
       total += item.price * item.count;
     }
-    return total;
+    return total.toFixed(2);
   }
 
 
