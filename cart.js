@@ -2,7 +2,7 @@
   'use strict';
 
 
-  const cart = [];
+  let cart = [];
 
 
   class Item {
@@ -15,17 +15,6 @@
 
 
   function addItemToCart(name, price, count) {    // Add an item to the cart
-
-    // Check value type
-    if (typeof name !== 'string') {
-      console.log('Type of Name must be a string');
-      return;
-    }
-
-    if (typeof price !== 'number' || typeof count !== 'number') {
-      console.log('Type of Price and Count must be a number');
-      return;
-    }
 
     name = name.toLowerCase();
 
@@ -49,12 +38,6 @@
 
   function removeItemFromCart(name) {   // Remove 1 item from cart
 
-    // Check params type
-    if (typeof name !== 'string') {
-      console.log('Type of Name must be a string');
-      return;
-    }
-
     name = name.toLowerCase();
 
     for (let i = 0; i < cart.length; i++) {
@@ -72,13 +55,8 @@
 
   function removeItemFromCartAll(name) {    // Clear 1 item and its count at once
 
-    // Check params type
-    if (typeof name !== 'string') {
-      console.log('Type of Name must be a string');
-      return;
-    }
-
     name = name.toLowerCase();
+
     for (let i = 0; i < cart.length; i++) {
       if(cart[i].name === name) {
         cart.splice(i, 1);
@@ -113,24 +91,27 @@
   }
 
 
-  function listCart() {   // List cart
-    // Copy cart object
-    return JSON.parse(JSON.stringify(cart));
-  }
+  // Copy the cart to avoid object mutation
+  const listCart = _ => cart = JSON.parse(JSON.stringify(cart));
 
 
   function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("shoppingCart", JSON.stringify(cart));
   }
 
 
+  function loadCart() {
+    cart = JSON.parse(localStorage.getItem("shoppingCart"));
+  }
+
+  loadCart();
+  const array = listCart();
+
+  console.log(array);
 
 
-  addItemToCart('Jabuka', 12.44, 10);
-  addItemToCart('Kruska', 14.12, 2);
-  addItemToCart('Mango', 44.99, 4);
 
-  saveCart();
+
 
   // Save cart - localstorage
   // load localstorage
