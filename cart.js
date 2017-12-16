@@ -36,12 +36,14 @@
     for (let item of cart) {
       if (item.name === name) {
         item.count += count;
+        saveCart();
         return;
       }
     }
 
     const item = new Item(name, price, count);
     cart.push(item);
+    saveCart();
   }
 
 
@@ -63,6 +65,7 @@
         }
         break;
       }
+      saveCart();
     }
   }
 
@@ -82,11 +85,13 @@
         break;
       }
     }
+    saveCart();
   }
 
 
   function clearCart() {    // Clear cart
     cart.length = 0;
+    saveCart();
   }
 
 
@@ -114,17 +119,18 @@
   }
 
 
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
 
 
-  addItemToCart('apple', 3, 10);
-  addItemToCart('snop', 10, 2);
-  addItemToCart('bang', 12, 4);
 
-  const list = listCart();
-  list[0].name = 'vladi';
 
-console.log(cart);
-console.log(list);
+  addItemToCart('Jabuka', 12.44, 10);
+  addItemToCart('Kruska', 14.12, 2);
+  addItemToCart('Mango', 44.99, 4);
+
+  saveCart();
 
   // Save cart - localstorage
   // load localstorage
