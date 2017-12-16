@@ -15,7 +15,7 @@ const TZARU_shoppingCart = {};
     };
 
     // addItemToCart : Function
-    TZARU_shoppingCart.addItemToCart = function(name, price = 0, count = 1) {
+    TZARU_shoppingCart.addItem = function(name, price = 0, count = 1) {
         name = name.toLowerCase();
         /*
         Iterate over cart array. If there's an item with same name,
@@ -24,18 +24,18 @@ const TZARU_shoppingCart = {};
         for (let item of this.cart) {
             if (item.name === name) {
                 item.count += count;
-                this.saveCart();
+                this.save();
                 return;
             }
         }
 
         const item = new this.Item(name, price, count);
         this.cart.push(item);
-        this.saveCart();
+        this.save();
     };
 
     // removeItemFromCart : Function
-    TZARU_shoppingCart.removeItemFromCart = function(name) {
+    TZARU_shoppingCart.removeItem = function(name) {
         name = name.toLowerCase();
 
         for (let i = 0; i < this.cart.length; i++) {
@@ -47,11 +47,11 @@ const TZARU_shoppingCart = {};
                 break;
             }
         }
-        this.saveCart();
+        this.save();
     };
 
     // removeItemFromCartAll : Function
-    TZARU_shoppingCart.removeItemFromCartAll = function(name) {
+    TZARU_shoppingCart.removeItemAll = function(name) {
         name = name.toLowerCase();
 
         for (let i = 0; i < this.cart.length; i++) {
@@ -60,13 +60,13 @@ const TZARU_shoppingCart = {};
                 break;
             }
         }
-        this.saveCart();
+        this.save();
     };
 
     // clearCart : Function
-    TZARU_shoppingCart.clearCart = function() {
+    TZARU_shoppingCart.clear = function() {
         this.cart.length = 0;
-        this.saveCart();
+        this.save();
     };
 
     // totalPrice : Function
@@ -88,7 +88,7 @@ const TZARU_shoppingCart = {};
     };
 
     // listCart : Function
-    TZARU_shoppingCart.listCart = function() { // Copy the cart to avoid object mutation
+    TZARU_shoppingCart.list = function() { // Copy the cart to avoid object mutation
         const cartCopy = JSON.parse(JSON.stringify(this.cart));
         // Total cost per item
         for (let item of cartCopy) {
@@ -97,13 +97,13 @@ const TZARU_shoppingCart = {};
         return cartCopy;
     };
 
-    // saveCart : Function
-    TZARU_shoppingCart.saveCart = function() {
+    // save : Function
+    TZARU_shoppingCart.save = function() {
         localStorage.setItem("shoppingCart", JSON.stringify(this.cart));
     };
 
     // loadCart : Function
-    TZARU_shoppingCart.loadCart = function() {
+    TZARU_shoppingCart.load = function() {
         this.cart = JSON.parse(localStorage.getItem("shoppingCart"));
         if (this.cart === null) {
             this.cart = [];

@@ -5,13 +5,13 @@
         e.preventDefault();
         const itemName = $(this).attr("data-name");
         const itemPrice = Number($(this).attr("data-price"));
-        TZARU_shoppingCart.addItemToCart(itemName, itemPrice);
+        TZARU_shoppingCart.addItem(itemName, itemPrice);
         displayCart();
     });
 
 
     $("#clear-cart").click(function(e) {
-        TZARU_shoppingCart.clearCart();
+        TZARU_shoppingCart.clear();
         displayCart();
     });
 
@@ -19,7 +19,7 @@
     // Delete Item
     $("#display-cart").on("click", ".delete-item", function(e) {
         const itemName = $(this).attr("data-name");
-        TZARU_shoppingCart.removeItemFromCartAll(itemName);
+        TZARU_shoppingCart.removeItemAll(itemName);
         displayCart();
     });
 
@@ -27,7 +27,7 @@
     // Add Item
     $("#display-cart").on("click", ".add-item", function(e) {
         const itemName = $(this).attr("data-name");
-        TZARU_shoppingCart.addItemToCart(itemName);
+        TZARU_shoppingCart.addItem(itemName);
         displayCart();
     });
 
@@ -35,13 +35,13 @@
     // Subtract Item
     $("#display-cart").on("click", ".subtract-item", function(e) {
         const itemName = $(this).attr("data-name");
-        TZARU_shoppingCart.removeItemFromCart(itemName);
+        TZARU_shoppingCart.removeItem(itemName);
         displayCart();
     });
 
 
     function displayCart() {
-        const cartArray = TZARU_shoppingCart.listCart();
+        const cartArray = TZARU_shoppingCart.list();
         let output = "";
         for (let item of cartArray) {
             output += `<li>
@@ -57,6 +57,6 @@
 
 
     // Invoke Methods
-    TZARU_shoppingCart.loadCart();
+    TZARU_shoppingCart.load();
     displayCart();
 })();
