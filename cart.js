@@ -75,8 +75,8 @@
         }
         break;
       }
-      saveCart();
     }
+    saveCart();
   }
 
 
