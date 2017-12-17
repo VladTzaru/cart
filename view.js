@@ -69,6 +69,5 @@
 
 
     // Invoke Methods
-    TZARU_shoppingCart.load();
     displayCart();
 })();
