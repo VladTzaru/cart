@@ -98,6 +98,15 @@ const TZARU_shoppingCart = ( function () {
         return itemCount;
     };
 
+    // totalPrice : Function
+    obj.totalPrice = function () {
+        let total = 0;
+        for ( let item of cart ) {
+            total += item.price * item.count;
+        }
+        return total.toFixed( 2 );
+    };
+
     // setCountForItem: Function
     obj.setCountForItem = function ( name, count ) {
         for ( let item of cart ) {
