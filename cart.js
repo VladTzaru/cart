@@ -18,7 +18,7 @@ const TZARU_shoppingCart = ( function () {
     // save : Function
     function save() {
         localStorage.setItem( "shoppingCart", JSON.stringify( cart ) );
-    };
+    }
 
     // loadCart : Function
     function load() {
@@ -26,7 +26,7 @@ const TZARU_shoppingCart = ( function () {
         if ( cart === null ) {
             cart = [];
         }
-    };
+    }
 
 
     /* -------------------------------------------------------
