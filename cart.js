@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 const TZARU_shoppingCart = ( function () {
     'use strict';
     /* -------------------------------------------------------
