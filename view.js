@@ -45,6 +45,9 @@
       const itemName = $(this).attr("data-name");
       const count = Number( $(this).val() );
       TZARU_shoppingCart.setCountForItem(itemName, count);
+      if (count <= 0) {
+        TZARU_shoppingCart.removeItemAll(itemName);
+      }
       displayCart();
     });
 
