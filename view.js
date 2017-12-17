@@ -40,16 +40,25 @@
     });
 
 
+    // Add a number of items at once (input value)
+    $("#display-cart").on("change", ".count-item", function(e) {
+      const itemName = $(this).attr("data-name");
+      const count = Number( $(this).val() );
+      TZARU_shoppingCart.setCountForItem(itemName, count);
+      displayCart();
+    });
+
+
     function displayCart() {
         const cartArray = TZARU_shoppingCart.list();
         let output = "";
         for (let item of cartArray) {
             output += `<li>
-          ${item.name} | $${item.price} * ${item.count} = ${item.total}
-          <button type="button" class="subtract-item" data-name="${item.name}">-</button>
-          <button type="button" class="add-item" data-name="${item.name}">+</button>
-          <button type="button" class="delete-item" data-name="${item.name}">x</button>
-          </li>`;
+              ${item.name} <input data-name="${item.name}" class="count-item" type="number" value="${item.count}"> | $${item.price} * ${item.count} = ${item.total}
+              <button type="button" class="subtract-item" data-name="${item.name}">-</button>
+              <button type="button" class="add-item" data-name="${item.name}">+</button>
+              <button type="button" class="delete-item" data-name="${item.name}">x</button>
+            </li>`;
         }
         $("#display-cart").html(output);
         $("#total-price").html(TZARU_shoppingCart.totalPrice());

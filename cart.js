@@ -87,6 +87,18 @@ const TZARU_shoppingCart = {};
         return itemCount;
     };
 
+
+    // setCountForItem: Function
+    TZARU_shoppingCart.setCountForItem = function(name, count) {
+      for (let item of this.cart) {
+        if (item.name === name) {
+          item.count = count;
+          break;
+        }
+      }
+      this.save();
+    };
+
     // listCart : Function
     TZARU_shoppingCart.list = function() { // Copy the cart to avoid object mutation
         const cartCopy = JSON.parse(JSON.stringify(this.cart));
